@@ -11,6 +11,9 @@
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
     "@clerk/themes": "^1.7.12",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@uiw/codemirror-theme-vscode": "^4.21.25",
+    "@uiw/react-codemirror": "^4.21.25",
     "firebase": "^10.10.0",
     "next": "14.1.4",
     "react": "^18",
