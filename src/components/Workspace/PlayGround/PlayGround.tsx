@@ -11,13 +11,17 @@ type PlayGroundProps = {
 };
 
 const PlayGround:React.FC<PlayGroundProps> = () => {
-    
-    return <div className='flex flex-col relative'>
+    const boilerPlate = 
+`function twoSum(nums, target) {
+    //Write your code here
+}`;
+
+    return <div className='flex flex-col relative overflow-x-hidden'>
         <PreferenceNav />
 
         <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60, 40]} minSize={60}>
             <div className='w-full overflow-auto bg-dark-layer-1'>
-                <CodeMirror value='const a=1;' theme={vscodeDark} extensions={[javascript()]}/>
+                <CodeMirror value={boilerPlate} theme={vscodeDark} extensions={[javascript()]}/>
             </div>
             
             <div className='w-full px-5 overflow-auto bg-dark-layer-1'>
