@@ -71,6 +71,7 @@ body {
   bottom: 0px;
   rounded: full;
   background-color: white;
+  width: full;
 }
 
 .split {

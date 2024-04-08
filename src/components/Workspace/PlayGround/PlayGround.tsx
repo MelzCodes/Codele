@@ -1,6 +1,7 @@
 import React from 'react';
 import Split from 'react-split';
 import PreferenceNav from '../PreferenceNav/PreferenceNav';
+import EditorFooter from '../EditorFooter/EditorFooter';
 import CodeMirror from '@uiw/react-codemirror'
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
@@ -76,6 +77,8 @@ const PlayGround:React.FC<PlayGroundProps> = () => {
 
             </div>
         </Split>
+
+        <EditorFooter />
     </div>
 
 }
