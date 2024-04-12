@@ -3,20 +3,23 @@ import React from 'react';
 import { useUser } from '@clerk/clerk-react'
 import { UserButton } from '@clerk/nextjs'
 import Timer from '@/components/Timer/Timer';
+import { useRouter } from 'next/router';
 
 type NavbarProps = {};
 
 const Navbar:React.FC<NavbarProps> = () => {
     const { user, isLoaded } = useUser();
+    const router = useRouter();
+    const isOnHomePage = router.pathname === "/"
     
     return (
-        <div className='flex items-center justify-between sm:px-12 px-2 md:px-24'>
+        <div className='flex items-center justify-between px-4'>
             <div className='flex items-center justify-center h-20 text-lg uppercase font-bold text-white'>
                 Leet Code Daily 💻 🚀
             </div>
 
             <div className='flex items-center justify-center'>
-                {isLoaded && user && (
+                {isLoaded && user && !isOnHomePage && (
                     <Timer />
                 )}
             </div>

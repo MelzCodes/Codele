@@ -13,11 +13,11 @@ type PlayGroundProps = {
 
 const PlayGround:React.FC<PlayGroundProps> = ( {problem} ) => {
     const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0); 
-   
+
     return <div className='flex flex-col relative overflow-x-hidden'>
         <PreferenceNav />
 
-        <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60, 40]} minSize={60}>
+        <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60, 40]} minSize={60} >
             <div className='w-full overflow-auto bg-dark-layer-1'>
                 <CodeMirror value={problem.starterCode} theme={vscodeDark} extensions={[javascript()]}/>
             </div>
@@ -54,7 +54,7 @@ const PlayGround:React.FC<PlayGroundProps> = ( {problem} ) => {
                     </div>
                 </div>
 
-                <div className='font-semibold'>
+                <div className='font-semibold pb-2'>
                     <p className='text-sm font-medium mt-4 text-white'>Output: </p>
                     <div className='w-full cursor-text rounded-lg px-3 py-[10px] border bg-dark-fill-3 border-transparent text-white mt-2' >
                         {problem.examples[activeTestCaseId].outputText}

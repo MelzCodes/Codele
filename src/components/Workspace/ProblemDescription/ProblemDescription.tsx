@@ -9,7 +9,7 @@ type ProblemDescriptionProps = {
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col relative overflow-y-auto h-screen">
       {/* TAB */}
       <div className="flex h-11 w-full items-center pt-2 text-white overflow-x-hidden">
         <div className={"bg-dark-layer-1 rounded-t-[5px] px-5 py-[10px] text-xs cursor-pointer"}>
@@ -18,7 +18,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
       </div>
 
       <div className="flex flex-1 overflow-hidden">
-        <div className="w-full overflow-y-auto px-5">
+        <div className="w-full overflow-y-auto px-5 max-h-screen">
           {/* Problem heading */}
           <div className="w-full">
             <div className="flex space-x-4">
@@ -46,8 +46,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
 
             {/* Problem Statement(paragraphs) */}
             <div className="text-white text-lg">
-  				<div dangerouslySetInnerHTML={{__html: problem.problemStatement}}/>
-			</div>
+  				    <div dangerouslySetInnerHTML={{__html: problem.problemStatement}}/>
+			      </div>
 
 
             {/* Examples */}
