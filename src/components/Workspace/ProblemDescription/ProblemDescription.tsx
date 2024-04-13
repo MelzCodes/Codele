@@ -56,6 +56,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                     Example {index + 1}:{" "}
                   </p>
                   {example.img && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={example.img} alt="" className="mt-3" />
                   )}
                   <div className="example-card">
