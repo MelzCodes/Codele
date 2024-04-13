@@ -6,9 +6,9 @@ import CodeMirror from '@uiw/react-codemirror'
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
 import { Problem } from '@/utils/types/problem';
-import { toast } from 'react-toastify';
 import { problems } from '@/utils/problems';
 import { useUser } from '@clerk/nextjs';
+import { ToastOptions, toast } from 'react-toastify';
 
 type PlayGroundProps = {
     problem: Problem;
@@ -20,6 +20,11 @@ const PlayGround:React.FC<PlayGroundProps> = ( {problem, setSuccess, pid} ) => {
     const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0); 
     let [userCode, setUserCode] = useState<string>(problem.starterCode);
     const { user } = useUser();
+    const commonToastOptions: ToastOptions = {
+        position: 'top-center',
+        autoClose: 3000,
+        theme: 'dark'
+    };
 
     const onChange = (value : string) => {
         setUserCode(value);
@@ -28,12 +33,12 @@ const PlayGround:React.FC<PlayGroundProps> = ( {problem, setSuccess, pid} ) => {
     const handleSubmission = () => {
         userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
         if (!userCode.startsWith(problem.starterFunctionName) ) {
-            toast.error('Please use the correct function name: ' + problem.starterFunctionName);
+            toast.error('Please use the correct function name: ' + problem.starterFunctionName, commonToastOptions);
             return;
         };
 
         if (!user) {
-            toast.error('Please log in to submit your code!');
+            toast.error('Please log in to submit your code!', commonToastOptions);
             return;
         };
 
@@ -43,19 +48,19 @@ const PlayGround:React.FC<PlayGroundProps> = ( {problem, setSuccess, pid} ) => {
             if (typeof handlerFunction === 'function') {
                 const success = handlerFunction(cb);
                 if (success) {
-                    toast.success('Congrats! All test cases passed!');
+                    toast.success('Congrats! All test cases passed!', commonToastOptions);
                     setSuccess(true);
                     setTimeout(() => {
                         setSuccess(false);
                     }, 4000);
                 } else {
-                    toast.error('Oops! Some test cases failed!');
+                    toast.error('Oops! Some test cases failed!', commonToastOptions);
                 }
             } else {
-                toast.error('Invalid handler function!');
+                toast.error('Invalid handler function!', commonToastOptions);
             }
         } catch (error) {
-            toast.error('Please write a valid function!');
+            toast.error('Oops, something went wrong!', commonToastOptions);
         }
     };
 
