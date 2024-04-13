@@ -6,21 +6,65 @@ import CodeMirror from '@uiw/react-codemirror'
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
 import { Problem } from '@/utils/types/problem';
+import { toast } from 'react-toastify';
+import { problems } from '@/utils/problems';
+import { useUser } from '@clerk/nextjs';
 
 type PlayGroundProps = {
     problem: Problem;
     setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+    pid: string;
 };
 
-const PlayGround:React.FC<PlayGroundProps> = ( {problem} ) => {
+const PlayGround:React.FC<PlayGroundProps> = ( {problem, setSuccess, pid} ) => {
     const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0); 
+    let [userCode, setUserCode] = useState<string>(problem.starterCode);
+    const { user } = useUser();
+
+    const onChange = (value : string) => {
+        setUserCode(value);
+    };
+
+    const handleSubmission = () => {
+        userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
+        if (!userCode.startsWith(problem.starterFunctionName) ) {
+            toast.error('Please use the correct function name: ' + problem.starterFunctionName);
+            return;
+        };
+
+        if (!user) {
+            toast.error('Please log in to submit your code!');
+            return;
+        };
+
+        try {
+            const cb = new Function(`return ${userCode}`)();
+            const handlerFunction = problems[pid].handlerFunction;
+            if (typeof handlerFunction === 'function') {
+                const success = handlerFunction(cb);
+                if (success) {
+                    toast.success('Congrats! All test cases passed!');
+                    setSuccess(true);
+                    setTimeout(() => {
+                        setSuccess(false);
+                    }, 4000);
+                } else {
+                    toast.error('Oops! Some test cases failed!');
+                }
+            } else {
+                toast.error('Invalid handler function!');
+            }
+        } catch (error) {
+            toast.error('Please write a valid function!');
+        }
+    };
 
     return <div className='flex flex-col relative overflow-x-hidden bottom-0'>
         <PreferenceNav />
 
         <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60, 40]} minSize={60} >
             <div className='w-full overflow-auto bg-dark-layer-1'>
-                <CodeMirror value={problem.starterCode} theme={vscodeDark} extensions={[javascript()]}/>
+                <CodeMirror value={problem.starterCode} theme={vscodeDark} extensions={[javascript()]} onChange={onChange}/>
             </div>
             
             <div className='w-full px-5 overflow-auto bg-dark-layer-1'>
@@ -65,7 +109,7 @@ const PlayGround:React.FC<PlayGroundProps> = ( {problem} ) => {
             </div>
         </Split>
 
-        <EditorFooter />
+        <EditorFooter handleSubmission={handleSubmission} />
     </div>
 
 }
