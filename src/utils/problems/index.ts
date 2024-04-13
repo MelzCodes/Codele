@@ -3,10 +3,10 @@ import { reverseLinkedList } from "./reverse-linked-list";
 import { twoSum } from "./two-sum";
 
 interface problemMap {
-    [key: string]: Problem
+  [key: string]: Problem;
 }
 
 export const problems: problemMap = {
-    "two-sum": twoSum,
-    "reverse-linked-list": reverseLinkedList
+  "two-sum": twoSum,
+  "reverse-linked-list": reverseLinkedList,
 };
