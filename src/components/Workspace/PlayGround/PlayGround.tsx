@@ -8,13 +8,14 @@ import { javascript } from '@codemirror/lang-javascript';
 import { Problem } from '@/utils/types/problem';
 
 type PlayGroundProps = {
-    problem: Problem
+    problem: Problem;
+    setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const PlayGround:React.FC<PlayGroundProps> = ( {problem} ) => {
     const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0); 
 
-    return <div className='flex flex-col relative overflow-x-hidden'>
+    return <div className='flex flex-col relative overflow-x-hidden bottom-0'>
         <PreferenceNav />
 
         <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60, 40]} minSize={60} >
