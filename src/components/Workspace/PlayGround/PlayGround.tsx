@@ -52,7 +52,7 @@ const PlayGround:React.FC<PlayGroundProps> = ( {problem, setSuccess, pid} ) => {
                     setSuccess(true);
                     setTimeout(() => {
                         setSuccess(false);
-                    }, 4000);
+                    }, 3500);
                 } else {
                     toast.error('Oops! Some test cases failed!', commonToastOptions);
                 }

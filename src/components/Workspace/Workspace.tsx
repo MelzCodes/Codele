@@ -22,7 +22,7 @@ const Workspace:React.FC<WorkspaceProps> = ({ problem }) => {
         <ProblemDescription problem={problem} />
         <div>
             <PlayGround problem={problem} setSuccess={setSuccess} pid={pid}/>
-            { success && <Confetti gravity={0.3} tweenDuration={4000} height={height} width={width}/> }
+            {success && <Confetti gravity={0.3} tweenDuration={4000} height={height} width={width}/>}
         </div>
     </Split>
 }

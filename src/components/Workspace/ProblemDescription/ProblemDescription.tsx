@@ -1,13 +1,18 @@
 import { Problem } from "@/utils/types/problem";
-import { AiFillLike, AiFillDislike } from "react-icons/ai";
-import { BsCheck2Circle } from "react-icons/bs";
-import { TiStarOutline } from "react-icons/ti";
 
 type ProblemDescriptionProps = {
   problem: Problem;
 };
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
+  const difficultyClassNames: { [key: string]: string } = {
+    easy: "text-olive bg-green-500",
+    medium: "text-dark-yellow bg-orange-500",
+    hard: "text-dark-pink bg-red-500",
+  };
+
+  const difficulty = problem.difficulty.toLowerCase();
+
   return (
     <div className="flex flex-col relative overflow-y-auto h-screen">
       {/* TAB */}
@@ -21,26 +26,10 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
         <div className="w-full overflow-y-auto px-5 max-h-screen">
           {/* Problem heading */}
           <div className="w-full">
-            <div className="flex space-x-4">
-              <div className="flex-1 mr-2 mt-2 text-3xl text-white font-medium">{problem.title}</div>
-            </div>
             <div className="flex items-center mt-3">
-              <div className={`text-olive bg-olive inline-block rounded-[21px] bg-opacity-[.15] px-2.5 py-1 text-xs font-medium capitalize `}>
-                Easy
-              </div>
-              <div className="rounded p-[3px] ml-4 text-lg transition-colors duration-200 text-green-s text-dark-green-s">
-                <BsCheck2Circle />
-              </div>
-              <div className="flex items-center cursor-pointer hover:bg-dark-fill-3 space-x-1 rounded p-[3px]  ml-4 text-lg transition-colors duration-200 text-dark-gray-6">
-                <AiFillLike />
-                <span className="text-xs">120</span>
-              </div>
-              <div className="flex items-center cursor-pointer hover:bg-dark-fill-3 space-x-1 rounded p-[3px]  ml-4 text-lg transition-colors duration-200 text-green-s text-dark-gray-6">
-                <AiFillDislike />
-                <span className="text-xs">2</span>
-              </div>
-              <div className="cursor-pointer hover:bg-dark-fill-3  rounded p-[3px]  ml-4 text-xl transition-colors duration-200 text-green-s text-dark-gray-6 ">
-                <TiStarOutline />
+              <div className="flex mr-2 text-3xl text-white font-medium">{problem.title}</div>
+              <div className={`inline-block rounded-[21px] bg-opacity-[.15] mt-1.5 px-2.5 py-1 text-sm font-medium capitalize ${difficultyClassNames[difficulty]}`}>
+                {difficulty}
               </div>
             </div>
 

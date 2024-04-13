@@ -9,6 +9,7 @@ export type Example = {
 export type Problem = {
 	id: string;
 	title: string;
+	difficulty: string;
 	problemStatement: string;
 	examples: Example[];
 	constraints: string;
