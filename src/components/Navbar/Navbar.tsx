@@ -13,10 +13,13 @@ const Navbar: React.FC<NavbarProps> = () => {
   const isOnHomePage = router.pathname === "/";
 
   return (
-    <div className="flex items-center justify-between px-4">
-      <div className="flex items-center justify-center h-20 text-lg uppercase font-bold text-white">
+    <div className="flex items-center justify-between px-4 z-10">
+      <Link
+        className="flex items-center justify-center h-20 text-lg uppercase font-bold text-white"
+        href={"/"}
+      >
         Leet Code Daily 💻 🚀
-      </div>
+      </Link>
 
       <div className="flex items-center justify-center">
         {isLoaded && user && !isOnHomePage && <Timer />}
