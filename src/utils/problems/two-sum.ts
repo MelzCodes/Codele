@@ -2,7 +2,7 @@ import assert from "assert";
 import { Problem } from "../types/problem";
 
 const starterCodeTwoSum = `function twoSum(nums, target) {
-    // Write your code here
+  // Write your code here
 };`;
 
 // handles users inputted code (quite poorly)
