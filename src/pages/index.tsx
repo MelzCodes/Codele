@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { problems } from "@/utils/problems";
-import { WavyBackground } from "@/components/ui/wavy-background";
 
 const HomePage: React.FC = () => {
   const { user, isLoaded } = useUser();
@@ -50,11 +49,11 @@ const HomePage: React.FC = () => {
           />
         </div>
         <h1 className="text-4xl font-bold mb-8 text-center">
-          Welcome to LeetCode Daily
+          Welcome to Codele
         </h1>
         <p className="text-lg mb-8 max-w-lg text-center">
-          Imagine wordle but for all of us nerds... Hold yourself accountable
-          and solve a fun (kinda) challenge everyday with us!
+          Imagine wordle but for all of us comp-sci nerds... Hold yourself
+          accountable and solve a fun (kinda) challenge everyday with us!
         </p>
         {isLoaded && user ? (
           <Link href={`/daily-problem/${activeProblemId}`}>
