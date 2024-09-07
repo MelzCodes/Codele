@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         appearance={{
           baseTheme: dark,
         }}
+        publishableKey={process.env.CLERK_PUBLISHABLE_KEY}
       >
         <Component {...pageProps} />
       </ClerkProvider>
