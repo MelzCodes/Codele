@@ -1,7 +1,11 @@
 import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
-  publicRoutes: ["/"],
+  publicRoutes: [
+    "/",
+    "/daily-problem/two-sum",
+    "/daily-problem/reverse-linked-list",
+  ],
 });
 
 export const config = {

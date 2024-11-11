@@ -55,7 +55,14 @@ const HomePage: React.FC = () => {
           Imagine wordle but for all of us comp-sci nerds... Hold yourself
           accountable and solve a fun (kinda) challenge everyday with us!
         </p>
-        {isLoaded && user ? (
+        {
+          <Link href={`/daily-problem/${activeProblemId}`}>
+            <button className="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-600">
+              See Daily Challenge!
+            </button>
+          </Link>
+          // Uncomment to make problem available to signed in users only
+          /* {isLoaded && user ? (
           <Link href={`/daily-problem/${activeProblemId}`}>
             <button className="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-600">
               See Daily Challenge!
@@ -67,7 +74,8 @@ const HomePage: React.FC = () => {
               Sign Up
             </button>
           </Link>
-        )}
+        )} */
+        }
       </div>
     </div>
   );
